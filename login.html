@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <link rel="stylesheet" type="text/css" href="loginstyle.css">
+</head>
+<body>
+  <h1>Login Page</h1>
+  <button id="signin-button">Sign In with Google</button>
+  
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script>
+    function onSignIn(googleUser) {
+      // Get basic profile information
+      var profile = googleUser.getBasicProfile();
+      
+      // Send profile information to server for authentication
+      // ...
+    }
+    
+    // Initialize the Google Sign-In API
+    gapi.load('auth2', function() {
+      gapi.auth2.init({
+        client_id: 'YOUR_GOOGLE_CLIENT_ID',
+        scope: 'profile email'
+      }).then(function() {
+        // Sign-In API has been successfully initialized
+        var signinButton = document.getElementById('signin-button');
+        signinButton.addEventListener('click', function() {
+          gapi.auth2.getAuthInstance().signIn();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
